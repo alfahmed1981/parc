@@ -2155,6 +2155,81 @@ body::before {
     flex-direction: column;
     gap: 10px;
   }
+  .cloud-naming-example {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cloud-naming-arrow {
+    display: none;
+  }
+}
+
+/* Cloud credentials */
+.cloud-cred-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.cloud-cred-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  direction: rtl;
+}
+
+.cloud-cred-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.cloud-cred-value {
+  font-size: 0.82rem;
+  user-select: all;
+}
+
+.cloud-2fa-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--accent-purple-dim);
+  border: 1px solid rgba(179, 136, 255, 0.15);
+  border-radius: var(--radius-sm);
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--accent-purple);
+  line-height: 1.6;
+  direction: rtl;
+}
+
+.cloud-2fa-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cloud-naming-example {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.cloud-naming-arrow {
+  color: var(--accent-green);
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 /* --- Utility --- */

@@ -931,6 +931,69 @@
       </div>
     </div>
 
+    <!-- ═══════ Card 4: Cloud Documentation ═══════ -->
+    <div class="glass-card playbook-card">
+      <div class="card-header">
+        <h3>
+          <span class="header-icon" style="background: var(--accent-green-dim); color: var(--accent-green);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          </span>
+          التوثيق السحابي
+        </h3>
+      </div>
+      <p class="playbook-section-label">Cloud Documentation</p>
+
+      <div class="playbook-rules">
+        <div class="playbook-rule">
+          <div class="playbook-rule-icon" style="background: var(--accent-green-dim); color: var(--accent-green);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div class="playbook-rule-body">
+            <div class="playbook-rule-title">الهدف</div>
+            <p>أرشفة صور التدخلات <strong>(قبل وبعد)</strong> لتسهيل الصيانة المستقبلية.</p>
+          </div>
+        </div>
+
+        <div class="playbook-rule cloud-credentials">
+          <div class="playbook-rule-icon" style="background: var(--accent-blue-dim); color: var(--accent-blue);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <div class="playbook-rule-body">
+            <div class="playbook-rule-title">المنصة: Google Drive</div>
+            <div class="cloud-cred-grid">
+              <div class="cloud-cred-row">
+                <span class="cloud-cred-label">البريد:</span>
+                <span class="cloud-cred-value mono-inline">support@ipst.education</span>
+              </div>
+              <div class="cloud-cred-row">
+                <span class="cloud-cred-label">كلمة المرور:</span>
+                <span class="cloud-cred-value mono-inline">80598059caixa1*</span>
+              </div>
+            </div>
+            <div class="cloud-2fa-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>الدخول محمي بمصادقة ثنائية <strong>(2FA)</strong>، يرجى التنسيق مع المهندس أحمد عند تسجيل الدخول لتلقي رمز التفعيل.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="playbook-rule">
+          <div class="playbook-rule-icon" style="background: var(--accent-orange-dim); color: var(--accent-orange);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="playbook-rule-body">
+            <div class="playbook-rule-title">قاعدة التسمية 🏷️</div>
+            <p>سَمِّ الصور باسم الجهاز والتاريخ:</p>
+            <div class="cloud-naming-example">
+              <span class="mono-inline">Rack_Before_1.jpg</span>
+              <span class="cloud-naming-arrow">→</span>
+              <span class="mono-inline">Rack_After_1.jpg</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ═══════ Confirmation Gate ═══════ -->
     <div class="glass-card playbook-confirm-card" id="playbookConfirmCard">
       <label class="playbook-oath" id="playbookOath">
