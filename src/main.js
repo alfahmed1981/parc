@@ -10,6 +10,7 @@ import { renderTechnician, initTechnicianEvents } from './pages/technician.js';
 import { renderMission, initMissionEvents } from './pages/mission.js';
 import { renderSetup, initSetupEvents } from './pages/setup.js';
 import { renderPlaybook, initPlaybookEvents } from './pages/playbook.js';
+import { renderWiring, initWiringEvents } from './pages/wiring.js';
 
 // --- Hash-Based Router ---
 const routes = {
@@ -20,6 +21,7 @@ const routes = {
   '/mission':    { render: renderMission,      init: initMissionEvents,    title: 'Mission Brief' },
   '/setup':      { render: renderSetup,        init: initSetupEvents,      title: 'Field Setup' },
   '/playbook':   { render: renderPlaybook,     init: initPlaybookEvents,   title: 'Playbook' },
+  '/wiring':     { render: renderWiring,       init: initWiringEvents,     title: 'Wiring Topology' },
 };
 
 function getRoute() {
