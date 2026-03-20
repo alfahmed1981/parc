@@ -130,11 +130,11 @@
               ${e.map(e=>`
                 <tr>
                   <td><strong>${e.wan}</strong></td>
-                  <td><span class="mono">${e.currentIp}</span></td>
+                  <td><a href="http://${e.currentIp}" target="_blank" rel="noopener" class="ip-link mono">${e.currentIp}</a></td>
                   <td><span class="mono">${e.mac}</span></td>
                   <td>${b(e.status)}</td>
                   <td>${e.statusNote}</td>
-                  <td><span class="mono">${e.targetIp}</span></td>
+                  <td><a href="http://${e.targetIp}" target="_blank" rel="noopener" class="ip-link mono">${e.targetIp}</a></td>
                   <td class="row-actions">
                     <button class="btn-row-action edit" data-type="wan" data-id="${e.id}" title="تعديل">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -188,7 +188,7 @@
                   <td>${e.location}</td>
                   <td>${e.floor===0?`Ground`:`Floor `+e.floor}</td>
                   <td><span class="badge badge-progress">${e.wing}</span></td>
-                  <td><span class="mono">${e.ip}</span></td>
+                  <td><a href="http://${e.ip}" target="_blank" rel="noopener" class="ip-link mono">${e.ip}</a></td>
                   <td><span class="mono">${e.mac}</span></td>
                   <td class="row-actions">
                     <button class="btn-row-action edit" data-type="ap" data-id="${e.id}" title="تعديل">

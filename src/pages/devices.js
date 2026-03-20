@@ -85,11 +85,11 @@ export function renderDevices() {
               ${routers.map(r => `
                 <tr>
                   <td><strong>${r.wan}</strong></td>
-                  <td><span class="mono">${r.currentIp}</span></td>
+                  <td><a href="http://${r.currentIp}" target="_blank" rel="noopener" class="ip-link mono">${r.currentIp}</a></td>
                   <td><span class="mono">${r.mac}</span></td>
                   <td>${getStatusBadge(r.status)}</td>
                   <td>${r.statusNote}</td>
-                  <td><span class="mono">${r.targetIp}</span></td>
+                  <td><a href="http://${r.targetIp}" target="_blank" rel="noopener" class="ip-link mono">${r.targetIp}</a></td>
                   <td class="row-actions">
                     <button class="btn-row-action edit" data-type="wan" data-id="${r.id}" title="تعديل">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -143,7 +143,7 @@ export function renderDevices() {
                   <td>${ap.location}</td>
                   <td>${ap.floor === 0 ? 'Ground' : 'Floor ' + ap.floor}</td>
                   <td><span class="badge badge-progress">${ap.wing}</span></td>
-                  <td><span class="mono">${ap.ip}</span></td>
+                  <td><a href="http://${ap.ip}" target="_blank" rel="noopener" class="ip-link mono">${ap.ip}</a></td>
                   <td><span class="mono">${ap.mac}</span></td>
                   <td class="row-actions">
                     <button class="btn-row-action edit" data-type="ap" data-id="${ap.id}" title="تعديل">

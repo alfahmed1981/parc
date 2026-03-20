@@ -2446,6 +2446,19 @@ body::before {
   color: var(--accent-red);
 }
 
+/* IP clickable links */
+.ip-link {
+  color: var(--accent-blue) !important;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.ip-link:hover {
+  text-decoration: underline;
+  color: #4de8ff !important;
+}
+
 /* --- Utility --- */
 .hidden { display: none !important; }
 .text-center { text-align: center; }
