@@ -190,6 +190,34 @@ export function renderSetup() {
                 </a>
               </div>
             </div>
+
+            <div class="setup-section-divider"></div>
+            <p class="setup-note">📱 على الهاتف الذكي:</p>
+            <div class="software-list">
+              <div class="software-item zello-highlight">
+                <div class="software-icon zello">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                </div>
+                <div class="software-info">
+                  <div class="software-name">Zello (Walkie-Talkie)</div>
+                  <div class="software-desc">للاتصال الصوتي المباشر والمستمر مع المهندس</div>
+                </div>
+                <a href="https://zello.com/app" target="_blank" rel="noopener" class="btn-download zello-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  تحميل
+                </a>
+              </div>
+            </div>
+            <ul class="setup-instructions" style="margin-top: 10px;">
+              <li>
+                <span class="instruction-bullet" style="color: var(--accent-orange);">●</span>
+                <span><strong>قناة الاتصال:</strong> انضم للقناة الصوتية الخاصة بالعملية: <span class="mono-inline" style="background: var(--accent-orange-dim); padding: 2px 8px; border-radius: 4px;">Parc_Upgrade</span></span>
+              </li>
+              <li>
+                <span class="instruction-bullet" style="color: var(--accent-orange);">●</span>
+                <span><strong style="color: var(--accent-orange);">تجهيز مهم:</strong> ضع سماعات الأذن <strong>(Earbuds)</strong> لكي تستمع للتوجيهات وتبقى يداك حرتين للعمل في الكابلات.</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -227,6 +255,10 @@ export function renderSetup() {
               <li>
                 <span class="instruction-bullet red">●</span>
                 <span><strong style="color: var(--accent-red);">انتظر تعليمات المهندس أحمد</strong> قبل فصل أي موجه (Router) من موجهات Huawei السبعة.</span>
+              </li>
+              <li>
+                <span class="instruction-bullet" style="color: var(--accent-green);">●</span>
+                <span>تأكد من عمل الميكروفون في تطبيق <strong>Zello</strong>، وأخبر المهندس أحمد <strong style="color: var(--accent-green);">صوتياً</strong> بأنك جاهز لبدء العملية.</span>
               </li>
             </ul>
           </div>

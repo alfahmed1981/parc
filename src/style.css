@@ -1777,6 +1777,26 @@ body::before {
 .software-icon.anydesk { background: rgba(255, 82, 82, 0.12); color: #ff5252; }
 .software-icon.winbox  { background: rgba(0, 212, 255, 0.12);  color: #00d4ff; }
 .software-icon.scanner { background: rgba(179, 136, 255, 0.12); color: #b388ff; }
+.software-icon.zello   { background: rgba(255, 145, 0, 0.12);   color: #ff9100; }
+
+.software-item.zello-highlight {
+  border-color: rgba(255, 145, 0, 0.25);
+  background: rgba(255, 145, 0, 0.04);
+}
+
+.software-item.zello-highlight:hover {
+  border-color: rgba(255, 145, 0, 0.4);
+}
+
+.btn-download.zello-btn {
+  background: linear-gradient(135deg, #ff9100, #e65100);
+}
+
+.setup-section-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 18px 0;
+}
 
 .software-info {
   flex: 1;
