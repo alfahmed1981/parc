@@ -1863,6 +1863,300 @@ body::before {
   }
 }
 
+/* --- Technician Playbook --- */
+.playbook-card {
+  direction: rtl;
+}
+
+.playbook-section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+  direction: ltr;
+}
+
+/* Confirmed banner */
+.playbook-confirmed-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(0, 230, 118, 0.1), rgba(0, 212, 255, 0.06));
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  color: var(--accent-green);
+  font-weight: 700;
+  font-size: 0.85rem;
+  direction: rtl;
+}
+
+/* Go-bag checklist */
+.playbook-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.playbook-check-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.playbook-check-item:hover {
+  background: var(--bg-glass-hover);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.playbook-check-item.checked {
+  border-color: rgba(0, 230, 118, 0.25);
+  background: rgba(0, 230, 118, 0.04);
+}
+
+.playbook-check-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.playbook-check-item input[type="checkbox"]:checked {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+}
+
+.playbook-check-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.playbook-check-item input[type="checkbox"]:hover {
+  border-color: var(--accent-blue);
+}
+
+.playbook-check-content {
+  flex: 1;
+}
+
+.playbook-check-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  display: block;
+}
+
+.playbook-check-item.checked .playbook-check-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.playbook-check-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+.playbook-check-desc.critical-note {
+  color: var(--accent-red);
+  font-weight: 600;
+}
+
+/* Rules */
+.playbook-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.playbook-rule {
+  display: flex;
+  gap: 16px;
+  padding: 18px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+.playbook-rule:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--bg-glass-hover);
+}
+
+.playbook-rule-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.playbook-rule-body {
+  flex: 1;
+}
+
+.playbook-rule-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.playbook-rule-body p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Quote bubble */
+.playbook-quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--accent-orange-dim);
+  border: 1px solid rgba(255, 145, 0, 0.15);
+  border-radius: var(--radius-sm);
+  margin-top: 10px;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--accent-orange);
+  line-height: 1.6;
+  direction: rtl;
+}
+
+.playbook-quote svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Confirmation card */
+.playbook-confirm-card {
+  text-align: center;
+  padding: 28px 24px;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.playbook-oath {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all var(--transition-normal);
+  direction: rtl;
+}
+
+.playbook-oath:hover {
+  border-color: var(--accent-blue);
+  background: var(--bg-glass-hover);
+}
+
+.playbook-oath input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.playbook-oath input[type="checkbox"]:checked {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+}
+
+.playbook-oath input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.playbook-oath-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.btn-start-mission {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 36px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: linear-gradient(135deg, var(--accent-green), #00b060);
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition-normal);
+  width: 100%;
+  max-width: 400px;
+}
+
+.btn-start-mission:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 230, 118, 0.3);
+}
+
+.btn-start-mission:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: var(--bg-glass);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+
+/* Playbook mobile */
+@media (max-width: 860px) {
+  .playbook-rule {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
 /* --- Utility --- */
 .hidden { display: none !important; }
 .text-center { text-align: center; }

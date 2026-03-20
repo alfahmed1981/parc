@@ -794,4 +794,152 @@
         <span>التجهيز مكتمل! في انتظار المهندس أحمد للبدء بالعمل عن بعد 🎉</span>
       </div>
     `:``}
-  `}function L(){let e=document.getElementById(`setupStepper`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`setup-check`)&&(F(e.target.dataset.key),R())}),e.addEventListener(`click`,e=>{if(!e.target.closest(`.btn-download`)&&e.target.closest(`.setup-step-card`)&&!e.target.classList.contains(`setup-check`)){let t=e.target.closest(`.setup-step`);if(t){let e=t.querySelector(`.setup-check`);e&&(F(e.dataset.key),R())}}}))}function R(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=I(),L())}var z={"/":{render:c,init:null,title:`Dashboard`},"/devices":{render:f,init:g,title:`Devices`},"/upgrade":{render:v,init:null,title:`Upgrade Plan`},"/technician":{render:S,init:w,title:`Technician`},"/mission":{render:k,init:j,title:`Mission Brief`},"/setup":{render:I,init:L,title:`Field Setup`}};function B(){return window.location.hash.slice(1)||`/`}function V(){let e=B(),t=z[e]||z[`/`],n=document.getElementById(`pageContent`);n&&(n.innerHTML=t.render(),n.style.animation=`none`,n.offsetHeight,n.style.animation=``),t.init&&t.init(),document.querySelectorAll(`.nav-link`).forEach(t=>{let n=t.dataset.page,r=e===`/`&&n===`dashboard`||e===`/`+n;t.classList.toggle(`active`,r)}),document.title=`Hotel Parc — ${t.title}`,H()}function H(){document.getElementById(`sidebar`)?.classList.remove(`open`),document.getElementById(`sidebarOverlay`)?.classList.remove(`active`)}function U(){let e=document.getElementById(`menuToggle`),t=document.getElementById(`sidebarOverlay`);e?.addEventListener(`click`,()=>{document.getElementById(`sidebar`)?.classList.toggle(`open`),t?.classList.toggle(`active`)}),t?.addEventListener(`click`,H)}window.addEventListener(`hashchange`,V),window.addEventListener(`DOMContentLoaded`,()=>{U(),V()});
+  `}function L(){let e=document.getElementById(`setupStepper`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`setup-check`)&&(F(e.target.dataset.key),R())}),e.addEventListener(`click`,e=>{if(!e.target.closest(`.btn-download`)&&e.target.closest(`.setup-step-card`)&&!e.target.classList.contains(`setup-check`)){let t=e.target.closest(`.setup-step`);if(t){let e=t.querySelector(`.setup-check`);e&&(F(e.dataset.key),R())}}}))}function R(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=I(),L())}var z=`parc_playbook`;function B(){let e=localStorage.getItem(z);if(e)return JSON.parse(e);let t={goBag:{tool1:!1,tool2:!1,tool3:!1,tool4:!1,tool5:!1},confirmed:!1,confirmedAt:null};return localStorage.setItem(z,JSON.stringify(t)),t}function V(e){let t=B();return Object.assign(t,e),localStorage.setItem(z,JSON.stringify(t)),t}function H(e){let t=B();return t.goBag[e]=!t.goBag[e],localStorage.setItem(z,JSON.stringify(t)),t}function U(){let e=B(),t=e.goBag,n=Object.values(t).filter(Boolean).length,r=Object.keys(t).length,i=n===r;return`
+    <div class="page-header">
+      <h2>ميثاق التقني الميداني</h2>
+      <p>Field Technician Playbook — بروتوكول التدخل الفندقي وحماية العقد</p>
+    </div>
+
+    ${e.confirmed?`
+      <div class="playbook-confirmed-banner">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>تم التأكيد — ${new Date(e.confirmedAt).toLocaleString(`ar-MA`)}</span>
+      </div>
+    `:``}
+
+    <!-- ═══════ Card 1: Go-Bag ═══════ -->
+    <div class="glass-card playbook-card">
+      <div class="card-header">
+        <h3>
+          <span class="header-icon" style="background: var(--accent-blue-dim); color: var(--accent-blue);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          </span>
+          التجهيزات الاستباقية
+        </h3>
+        <span class="badge ${i?`badge-complete`:`badge-progress`}">${n}/${r}</span>
+      </div>
+      <p class="playbook-section-label">The Pro Go-Bag</p>
+
+      <div class="playbook-checklist" id="goBagList">
+        <label class="playbook-check-item ${t.tool1?`checked`:``}">
+          <input type="checkbox" class="gobag-check" data-key="tool1" ${t.tool1?`checked`:``} />
+          <div class="playbook-check-content">
+            <span class="playbook-check-title">أدوات الشبكة الأساسية</span>
+            <span class="playbook-check-desc">أداة الأرجة (Crimping Tool)، كابلات UTP، رؤوس RJ45</span>
+          </div>
+        </label>
+        <label class="playbook-check-item ${t.tool2?`checked`:``}">
+          <input type="checkbox" class="gobag-check" data-key="tool2" ${t.tool2?`checked`:``} />
+          <div class="playbook-check-content">
+            <span class="playbook-check-title">آلة فحص الكابلات (Cable Tester)</span>
+            <span class="playbook-check-desc critical-note">مهم جداً: لا تثق بأي كابل قديم دون فحصه</span>
+          </div>
+        </label>
+        <label class="playbook-check-item ${t.tool3?`checked`:``}">
+          <input type="checkbox" class="gobag-check" data-key="tool3" ${t.tool3?`checked`:``} />
+          <div class="playbook-check-content">
+            <span class="playbook-check-title">هاتف مشحون 100% + بطارية محمولة</span>
+            <span class="playbook-check-desc">Power Bank للطوارئ</span>
+          </div>
+        </label>
+        <label class="playbook-check-item ${t.tool4?`checked`:``}">
+          <input type="checkbox" class="gobag-check" data-key="tool4" ${t.tool4?`checked`:``} />
+          <div class="playbook-check-content">
+            <span class="playbook-check-title">طابعة ملصقات (Label Maker)</span>
+            <span class="playbook-check-desc">لتسمية أي كابل يتم تعديله</span>
+          </div>
+        </label>
+        <label class="playbook-check-item ${t.tool5?`checked`:``}">
+          <input type="checkbox" class="gobag-check" data-key="tool5" ${t.tool5?`checked`:``} />
+          <div class="playbook-check-content">
+            <span class="playbook-check-title">مفتاح USB للطوارئ</span>
+            <span class="playbook-check-desc">يحتوي على Winbox ونسخ احتياطية</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- ═══════ Card 2: Invisible Technician ═══════ -->
+    <div class="glass-card playbook-card">
+      <div class="card-header">
+        <h3>
+          <span class="header-icon" style="background: var(--accent-purple-dim); color: var(--accent-purple);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+          </span>
+          عقلية التقني الفندقي
+        </h3>
+      </div>
+      <p class="playbook-section-label">The Invisible Technician</p>
+
+      <div class="playbook-rules">
+        <div class="playbook-rule">
+          <div class="playbook-rule-icon" style="background: var(--accent-green-dim); color: var(--accent-green);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="playbook-rule-body">
+            <div class="playbook-rule-title">الهدوء والنظافة</div>
+            <p>أعد كل شيء كما كان <strong>(الأسقف المعلقة، الخزانات)</strong>. لا تترك أي أثر أو غبار.</p>
+          </div>
+        </div>
+        <div class="playbook-rule">
+          <div class="playbook-rule-icon" style="background: var(--accent-orange-dim); color: var(--accent-orange);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <div class="playbook-rule-body">
+            <div class="playbook-rule-title">اللباقة مع النزلاء</div>
+            <p>إذا سألك نزيل، أجب بابتسامة:</p>
+            <div class="playbook-quote">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              "نقوم بتحديث شامل لتسريع الإنترنت، ستعود الخدمة خلال دقائق. شكراً لتفهمكم."
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ Card 3: SLA Protection ═══════ -->
+    <div class="glass-card playbook-card">
+      <div class="card-header">
+        <h3>
+          <span class="header-icon" style="background: var(--accent-red-dim); color: var(--accent-red);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          التوثيق وحماية العقد
+        </h3>
+      </div>
+      <p class="playbook-section-label">SLA Protection</p>
+
+      <div class="playbook-rules">
+        <div class="playbook-rule">
+          <div class="playbook-rule-icon" style="background: var(--accent-blue-dim); color: var(--accent-blue);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <div class="playbook-rule-body">
+            <div class="playbook-rule-title">التوثيق بالصور 📸</div>
+            <p>التقط صورة واضحة للخزانة <strong>(Rack)</strong> أو الكابلات <strong>قبل لمسها</strong>، وصورة أخرى <strong>بعد انتهاء عملك</strong>.</p>
+          </div>
+        </div>
+        <div class="playbook-rule">
+          <div class="playbook-rule-icon" style="background: var(--accent-red-dim); color: var(--accent-red);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="playbook-rule-body">
+            <div class="playbook-rule-title">قاعدة التشكيك ⚠️</div>
+            <p>افحص الكابلات <strong>قبل ربطها</strong> بجهاز الميكروتيك الجديد لتجنب <strong style="color: var(--accent-red);">التماس الكهربائي</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ Confirmation Gate ═══════ -->
+    <div class="glass-card playbook-confirm-card" id="playbookConfirmCard">
+      <label class="playbook-oath" id="playbookOath">
+        <input type="checkbox" id="oathCheck" ${e.confirmed?`checked disabled`:``} />
+        <span class="playbook-oath-text">أؤكد أنني قرأت الميثاق، وأحمل معي كافة التجهيزات المطلوبة.</span>
+      </label>
+      <button class="btn-start-mission" id="startMissionBtn" ${e.confirmed?``:`disabled`}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span>تأكيد وبدء المهمة (Start Mission)</span>
+      </button>
+    </div>
+  `}function W(){let e=document.getElementById(`goBagList`);e&&e.addEventListener(`change`,e=>{e.target.classList.contains(`gobag-check`)&&(H(e.target.dataset.key),G())});let t=document.getElementById(`oathCheck`),n=document.getElementById(`startMissionBtn`);t&&n&&t.addEventListener(`change`,()=>{n.disabled=!t.checked}),n&&n.addEventListener(`click`,()=>{if(B().confirmed){window.location.hash=`#/setup`;return}V({confirmed:!0,confirmedAt:new Date().toISOString()}),window.location.hash=`#/setup`})}function G(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=U(),W())}var K={"/":{render:c,init:null,title:`Dashboard`},"/devices":{render:f,init:g,title:`Devices`},"/upgrade":{render:v,init:null,title:`Upgrade Plan`},"/technician":{render:S,init:w,title:`Technician`},"/mission":{render:k,init:j,title:`Mission Brief`},"/setup":{render:I,init:L,title:`Field Setup`},"/playbook":{render:U,init:W,title:`Playbook`}};function q(){return window.location.hash.slice(1)||`/`}function J(){let e=q(),t=K[e]||K[`/`],n=document.getElementById(`pageContent`);n&&(n.innerHTML=t.render(),n.style.animation=`none`,n.offsetHeight,n.style.animation=``),t.init&&t.init(),document.querySelectorAll(`.nav-link`).forEach(t=>{let n=t.dataset.page,r=e===`/`&&n===`dashboard`||e===`/`+n;t.classList.toggle(`active`,r)}),document.title=`Hotel Parc — ${t.title}`,Y()}function Y(){document.getElementById(`sidebar`)?.classList.remove(`open`),document.getElementById(`sidebarOverlay`)?.classList.remove(`active`)}function X(){let e=document.getElementById(`menuToggle`),t=document.getElementById(`sidebarOverlay`);e?.addEventListener(`click`,()=>{document.getElementById(`sidebar`)?.classList.toggle(`open`),t?.classList.toggle(`active`)}),t?.addEventListener(`click`,Y)}window.addEventListener(`hashchange`,J),window.addEventListener(`DOMContentLoaded`,()=>{X(),J()});
