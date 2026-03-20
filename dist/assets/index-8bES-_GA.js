@@ -73,7 +73,7 @@
       ${e.map(e=>`
         <div class="comparison-row">
           <div class="comp-label">
-            <span class="comp-icon">${l(e.icon)}</span>
+            <span class="comp-icon">${ee(e.icon)}</span>
             ${e.component}
           </div>
           <div class="comp-current">
@@ -87,7 +87,7 @@
         </div>
       `).join(``)}
     </div>
-  `}function l(e){return{router:`🖧`,dhcp:`📋`,lan:`🌐`,wan:`🔌`,stability:`🛡️`}[e]||`📦`}var u=`wan`,d=`all`;function f(){return`
+  `}function ee(e){return{router:`🖧`,dhcp:`📋`,lan:`🌐`,wan:`🔌`,stability:`🛡️`}[e]||`📦`}var l=`parc_wan_routers`,u=`parc_access_points`,d=`wan`,f=`all`;function p(){let e=localStorage.getItem(l);return e?JSON.parse(e):(localStorage.setItem(l,JSON.stringify(t)),[...t])}function m(e){localStorage.setItem(l,JSON.stringify(e))}function h(){let e=localStorage.getItem(u);return e?JSON.parse(e):(localStorage.setItem(u,JSON.stringify(n)),[...n])}function g(e){localStorage.setItem(u,JSON.stringify(e))}function _(e){return e.length===0?1:Math.max(...e.map(e=>e.id))+1}function v(){let e=p(),t=h();return`
     <div class="page-header">
       <h2>Device Management</h2>
       <p>Inventory of WAN routers (Huawei GPON) and Altai access points</p>
@@ -95,19 +95,23 @@
 
     <!-- Tabs -->
     <div class="tabs" id="deviceTabs">
-      <button class="tab-btn ${u===`wan`?`active`:``}" data-tab="wan">
-        📡 WAN Routers (${t.length})
+      <button class="tab-btn ${d===`wan`?`active`:``}" data-tab="wan">
+        📡 WAN Routers (${e.length})
       </button>
-      <button class="tab-btn ${u===`ap`?`active`:``}" data-tab="ap">
-        📶 Access Points (${n.length})
+      <button class="tab-btn ${d===`ap`?`active`:``}" data-tab="ap">
+        📶 Access Points (${t.length})
       </button>
     </div>
 
     <!-- WAN Routers Table -->
-    <div id="wanPanel" class="${u===`wan`?``:`hidden`}">
+    <div id="wanPanel" class="${d===`wan`?``:`hidden`}">
       <div class="glass-card">
         <div class="card-header">
           <h3><span class="header-icon">📡</span> Huawei GPON Fiber Routers</h3>
+          <button class="btn-add" id="addWanBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة
+          </button>
         </div>
         <div class="data-table-wrapper">
           <table class="data-table" id="wanTable">
@@ -119,17 +123,26 @@
                 <th>Status</th>
                 <th>Notes</th>
                 <th>Target IP</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
-              ${t.map(e=>`
+              ${e.map(e=>`
                 <tr>
                   <td><strong>${e.wan}</strong></td>
                   <td><span class="mono">${e.currentIp}</span></td>
                   <td><span class="mono">${e.mac}</span></td>
-                  <td>${h(e.status)}</td>
+                  <td>${b(e.status)}</td>
                   <td>${e.statusNote}</td>
                   <td><span class="mono">${e.targetIp}</span></td>
+                  <td class="row-actions">
+                    <button class="btn-row-action edit" data-type="wan" data-id="${e.id}" title="تعديل">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    </button>
+                    <button class="btn-row-action delete" data-type="wan" data-id="${e.id}" title="حذف">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </button>
+                  </td>
                 </tr>
               `).join(``)}
             </tbody>
@@ -139,16 +152,20 @@
     </div>
 
     <!-- Access Points Table -->
-    <div id="apPanel" class="${u===`ap`?``:`hidden`}">
+    <div id="apPanel" class="${d===`ap`?``:`hidden`}">
       <div class="glass-card">
         <div class="card-header">
           <h3><span class="header-icon">📶</span> Altai Access Points</h3>
+          <button class="btn-add" id="addApBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            إضافة
+          </button>
         </div>
         
         <!-- Floor Filters -->
         <div class="filter-bar" id="apFilters">
-          <button class="filter-chip ${d===`all`?`active`:``}" data-filter="all">All (${n.length})</button>
-          ${m()}
+          <button class="filter-chip ${f===`all`?`active`:``}" data-filter="all">All (${t.length})</button>
+          ${te(t)}
         </div>
 
         <div class="data-table-wrapper">
@@ -161,10 +178,11 @@
                 <th>Wing</th>
                 <th>Management IP</th>
                 <th>MAC Address</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
-              ${p().map(e=>`
+              ${y(t).map(e=>`
                 <tr>
                   <td><strong>${e.name}</strong></td>
                   <td>${e.location}</td>
@@ -172,6 +190,14 @@
                   <td><span class="badge badge-progress">${e.wing}</span></td>
                   <td><span class="mono">${e.ip}</span></td>
                   <td><span class="mono">${e.mac}</span></td>
+                  <td class="row-actions">
+                    <button class="btn-row-action edit" data-type="ap" data-id="${e.id}" title="تعديل">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    </button>
+                    <button class="btn-row-action delete" data-type="ap" data-id="${e.id}" title="حذف">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </button>
+                  </td>
                 </tr>
               `).join(``)}
             </tbody>
@@ -179,7 +205,84 @@
         </div>
       </div>
     </div>
-  `}function p(){return d===`all`?n:n.filter(e=>String(e.floor)===d)}function m(){return[...new Set(n.map(e=>e.floor))].sort((e,t)=>e-t).map(e=>{let t=e===0?`Ground`:`Floor ${e}`,r=n.filter(t=>t.floor===e).length;return`<button class="filter-chip ${d===String(e)?`active`:``}" data-filter="${e}">${t} (${r})</button>`}).join(``)}function h(e){return{active:`<span class="badge badge-active">Active</span>`,warning:`<span class="badge badge-warning">Warning</span>`,error:`<span class="badge badge-error">Problem</span>`}[e]||e}function g(){document.getElementById(`deviceTabs`)?.addEventListener(`click`,e=>{let t=e.target.closest(`.tab-btn`);t&&(u=t.dataset.tab,_())}),document.getElementById(`apFilters`)?.addEventListener(`click`,e=>{let t=e.target.closest(`.filter-chip`);t&&(d=t.dataset.filter,_())}),document.querySelectorAll(`.data-table thead th`).forEach(e=>{e.addEventListener(`click`,()=>{e.style.color=`var(--accent-blue)`,setTimeout(()=>{e.style.color=``},300)})})}function _(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=f(),g())}function v(){let t=a(),i=n.length*5,o=0;Object.values(t).forEach(e=>{[`bridgeMode`,`dhcpDisabled`,`powerReduced`,`channelFixed`,`ssidUnified`].forEach(t=>{e[t]&&o++})});let s=Object.values(t).filter(e=>e.completedAt).length,c=Math.round(o/i*100);return`
+
+    <!-- Modal Overlay -->
+    <div class="crud-modal-overlay hidden" id="crudModal">
+      <div class="crud-modal">
+        <div class="crud-modal-header">
+          <h3 id="modalTitle"></h3>
+          <button class="btn-modal-close" id="modalClose">✕</button>
+        </div>
+        <form id="crudForm" class="crud-form"></form>
+      </div>
+    </div>
+  `}function y(e){return f===`all`?e:e.filter(e=>String(e.floor)===f)}function te(e){return[...new Set(e.map(e=>e.floor))].sort((e,t)=>e-t).map(t=>{let n=t===0?`Ground`:`Floor ${t}`,r=e.filter(e=>e.floor===t).length;return`<button class="filter-chip ${f===String(t)?`active`:``}" data-filter="${t}">${n} (${r})</button>`}).join(``)}function b(e){return{active:`<span class="badge badge-active">Active</span>`,warning:`<span class="badge badge-warning">Warning</span>`,error:`<span class="badge badge-error">Problem</span>`}[e]||e}function x(e){let t=!!e,n=document.getElementById(`crudModal`),r=document.getElementById(`modalTitle`),i=document.getElementById(`crudForm`);r.textContent=t?`تعديل موجه WAN`:`إضافة موجه WAN جديد`,i.innerHTML=`
+    <input type="hidden" name="id" value="${e?.id||``}" />
+    <div class="form-row">
+      <label>WAN Name</label>
+      <input type="text" name="wan" value="${e?.wan||``}" placeholder="مثال: WAN 8" required />
+    </div>
+    <div class="form-row">
+      <label>Current IP</label>
+      <input type="text" name="currentIp" value="${e?.currentIp||``}" placeholder="192.168.1.x" required />
+    </div>
+    <div class="form-row">
+      <label>MAC Address</label>
+      <input type="text" name="mac" value="${e?.mac||``}" placeholder="AA:BB:CC:DD:EE:FF" required />
+    </div>
+    <div class="form-row">
+      <label>Status</label>
+      <select name="status">
+        <option value="active"  ${e?.status===`active`?`selected`:``}>Active</option>
+        <option value="warning" ${e?.status===`warning`?`selected`:``}>Warning</option>
+        <option value="error"   ${e?.status===`error`?`selected`:``}>Problem</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Notes</label>
+      <input type="text" name="statusNote" value="${e?.statusNote||``}" placeholder="ملاحظات" />
+    </div>
+    <div class="form-row">
+      <label>Target IP</label>
+      <input type="text" name="targetIp" value="${e?.targetIp||``}" placeholder="192.168.x0.1" required />
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" id="formCancel">إلغاء</button>
+      <button type="submit" class="btn-save">${t?`حفظ التعديلات`:`إضافة`}</button>
+    </div>
+  `,n.classList.remove(`hidden`),i.onsubmit=n=>{n.preventDefault();let r=new FormData(i),a=p();if(t){let t=a.findIndex(t=>t.id===e.id);t!==-1&&(a[t]={...a[t],wan:r.get(`wan`),currentIp:r.get(`currentIp`),mac:r.get(`mac`),status:r.get(`status`),statusNote:r.get(`statusNote`),targetIp:r.get(`targetIp`)})}else a.push({id:_(a),wan:r.get(`wan`),currentIp:r.get(`currentIp`),mac:r.get(`mac`),status:r.get(`status`),statusNote:r.get(`statusNote`),targetIp:r.get(`targetIp`)});m(a),C(),E()},document.getElementById(`formCancel`).onclick=C,document.getElementById(`modalClose`).onclick=C}function S(e){let t=!!e,n=document.getElementById(`crudModal`),r=document.getElementById(`modalTitle`),i=document.getElementById(`crudForm`);r.textContent=t?`تعديل نقطة ولوج`:`إضافة نقطة ولوج جديدة`,i.innerHTML=`
+    <input type="hidden" name="id" value="${e?.id||``}" />
+    <div class="form-row">
+      <label>Name</label>
+      <input type="text" name="name" value="${e?.name||``}" placeholder="مثال: AC4120" required />
+    </div>
+    <div class="form-row">
+      <label>Location</label>
+      <input type="text" name="location" value="${e?.location||``}" placeholder="Floor 4, Wing A" required />
+    </div>
+    <div class="form-row two-col">
+      <div class="form-row">
+        <label>Floor</label>
+        <input type="number" name="floor" value="${e?.floor??``}" min="0" max="10" required />
+      </div>
+      <div class="form-row">
+        <label>Wing</label>
+        <input type="text" name="wing" value="${e?.wing||``}" placeholder="A / B / C" required />
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Management IP</label>
+      <input type="text" name="ip" value="${e?.ip||``}" placeholder="192.168.1.x" required />
+    </div>
+    <div class="form-row">
+      <label>MAC Address</label>
+      <input type="text" name="mac" value="${e?.mac||``}" placeholder="00:19:BE:xx:xx:xx" required />
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" id="formCancel">إلغاء</button>
+      <button type="submit" class="btn-save">${t?`حفظ التعديلات`:`إضافة`}</button>
+    </div>
+  `,n.classList.remove(`hidden`),i.onsubmit=n=>{n.preventDefault();let r=new FormData(i),a=h(),o={name:r.get(`name`),location:r.get(`location`),locationAr:r.get(`location`),floor:parseInt(r.get(`floor`)),wing:r.get(`wing`).toUpperCase(),ip:r.get(`ip`),mac:r.get(`mac`)};if(t){let t=a.findIndex(t=>t.id===e.id);t!==-1&&(a[t]={...a[t],...o})}else a.push({id:_(a),...o});g(a),C(),E()},document.getElementById(`formCancel`).onclick=C,document.getElementById(`modalClose`).onclick=C}function C(){document.getElementById(`crudModal`)?.classList.add(`hidden`)}function w(e,t){confirm(e===`wan`?`هل تريد حذف هذا الموجه؟`:`هل تريد حذف نقطة الولوج هذه؟`)&&(e===`wan`?m(p().filter(e=>e.id!==t)):g(h().filter(e=>e.id!==t)),E())}function T(){document.getElementById(`deviceTabs`)?.addEventListener(`click`,e=>{let t=e.target.closest(`.tab-btn`);t&&(d=t.dataset.tab,E())}),document.getElementById(`apFilters`)?.addEventListener(`click`,e=>{let t=e.target.closest(`.filter-chip`);t&&(f=t.dataset.filter,E())}),document.getElementById(`addWanBtn`)?.addEventListener(`click`,()=>x(null)),document.getElementById(`addApBtn`)?.addEventListener(`click`,()=>S(null)),document.addEventListener(`click`,ne),document.getElementById(`crudModal`)?.addEventListener(`click`,e=>{e.target.id===`crudModal`&&C()})}function ne(e){let t=e.target.closest(`.btn-row-action`);if(!t)return;let n=t.dataset.type,r=parseInt(t.dataset.id);if(t.classList.contains(`edit`))if(n===`wan`){let e=p().find(e=>e.id===r);e&&x(e)}else{let e=h().find(e=>e.id===r);e&&S(e)}else t.classList.contains(`delete`)&&w(n,r)}function E(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=v(),T())}function D(){let t=a(),i=n.length*5,o=0;Object.values(t).forEach(e=>{[`bridgeMode`,`dhcpDisabled`,`powerReduced`,`channelFixed`,`ssidUnified`].forEach(t=>{e[t]&&o++})});let s=Object.values(t).filter(e=>e.completedAt).length,c=Math.round(o/i*100);return`
     <div class="page-header">
       <h2>Upgrade Plan</h2>
       <p>Network migration from current architecture to MikroTik-based infrastructure</p>
@@ -234,7 +337,7 @@
       ${e.map(e=>`
         <div class="comparison-row">
           <div class="comp-label">
-            <span class="comp-icon">${y(e.icon)}</span>
+            <span class="comp-icon">${re(e.icon)}</span>
             ${e.component}
           </div>
           <div class="comp-current">
@@ -259,7 +362,7 @@
           <div class="task-card-header">
             <div class="task-title">
               <span class="task-icon" style="background: ${e.critical?`var(--accent-red-dim)`:`var(--accent-blue-dim)`}; color: ${e.critical?`var(--accent-red)`:`var(--accent-blue)`};">
-                ${b(e.icon)}
+                ${ie(e.icon)}
               </span>
               ${e.setting}
             </div>
@@ -289,7 +392,7 @@
         <strong>Action required:</strong> Log into each Huawei router admin panel and disable the WLAN broadcast. This is essential for clean signal coverage from the Altai APs.
       </p>
     </div>
-  `}function y(e){return{router:`🖧`,dhcp:`📋`,lan:`🌐`,wan:`🔌`,stability:`🛡️`}[e]||`📦`}function b(e){return{bridge:`🔀`,dhcp_off:`🚫`,signal:`📶`,channel:`📻`,wifi:`📡`,wifi_off:`🔇`}[e]||`⚙️`}var x=null;function S(){let e=a(),t=Object.values(e).filter(e=>e.completedAt).length,r=Object.values(e).filter(e=>[`bridgeMode`,`dhcpDisabled`,`powerReduced`,`channelFixed`,`ssidUnified`].filter(t=>e[t]).length>0&&!e.completedAt).length;return`
+  `}function re(e){return{router:`🖧`,dhcp:`📋`,lan:`🌐`,wan:`🔌`,stability:`🛡️`}[e]||`📦`}function ie(e){return{bridge:`🔀`,dhcp_off:`🚫`,signal:`📶`,channel:`📻`,wifi:`📡`,wifi_off:`🔇`}[e]||`⚙️`}var O=null;function k(){let e=a(),t=Object.values(e).filter(e=>e.completedAt).length,r=Object.values(e).filter(e=>[`bridgeMode`,`dhcpDisabled`,`powerReduced`,`channelFixed`,`ssidUnified`].filter(t=>e[t]).length>0&&!e.completedAt).length;return`
     <div class="page-header">
       <h2>Technician Interface</h2>
       <p>Track and confirm AP conversion from Gateway Mode to Bridge Mode</p>
@@ -334,9 +437,9 @@
 
     <!-- AP Cards -->
     <div id="apCards">
-      ${n.map(t=>C(t,e[t.id])).join(``)}
+      ${n.map(t=>A(t,e[t.id])).join(``)}
     </div>
-  `}function C(e,t){let n=[`bridgeMode`,`dhcpDisabled`,`powerReduced`,`channelFixed`,`ssidUnified`].filter(e=>t[e]).length,r=t.completedAt!==null,i=x===e.id,a=``;return a=r?`<span class="badge badge-complete">Completed</span>`:n>0?`<span class="badge badge-progress">${n}/5</span>`:`<span class="badge badge-pending">Pending</span>`,`
+  `}function A(e,t){let n=[`bridgeMode`,`dhcpDisabled`,`powerReduced`,`channelFixed`,`ssidUnified`].filter(e=>t[e]).length,r=t.completedAt!==null,i=O===e.id,a=``;return a=r?`<span class="badge badge-complete">Completed</span>`:n>0?`<span class="badge badge-progress">${n}/5</span>`:`<span class="badge badge-pending">Pending</span>`,`
     <div class="ap-card ${r?`completed`:``} ${i?`open`:``}" data-ap-id="${e.id}">
       <div class="ap-card-header" data-toggle="${e.id}">
         <div class="ap-card-info">
@@ -417,7 +520,7 @@
         `:``}
       </div>
     </div>
-  `}function w(){let e=document.getElementById(`apCards`);e&&(e.addEventListener(`click`,e=>{let t=e.target.closest(`[data-toggle]`);if(t){let e=parseInt(t.dataset.toggle);x=x===e?null:e,T();return}let n=e.target.closest(`[data-reset]`);if(n){s(parseInt(n.dataset.reset)),T();return}}),e.addEventListener(`change`,e=>{if(e.target.type===`checkbox`&&e.target.dataset.ap){let t=parseInt(e.target.dataset.ap),n=e.target.dataset.field;o(t,n,e.target.checked),T()}}))}function T(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=S(),w())}var E=`parc_mission_steps`;function D(){let e=localStorage.getItem(E);if(e)return JSON.parse(e);let t={step1:!1,step2:!1,step3:!1,step4:!1,step5:!1};return localStorage.setItem(E,JSON.stringify(t)),t}function O(e){let t=D();return t[e]=!t[e],localStorage.setItem(E,JSON.stringify(t)),t}function k(){let e=D(),t=Object.values(e).filter(Boolean).length,n=Math.round(t/5*100);return`
+  `}function j(){let e=document.getElementById(`apCards`);e&&(e.addEventListener(`click`,e=>{let t=e.target.closest(`[data-toggle]`);if(t){let e=parseInt(t.dataset.toggle);O=O===e?null:e,M();return}let n=e.target.closest(`[data-reset]`);if(n){s(parseInt(n.dataset.reset)),M();return}}),e.addEventListener(`change`,e=>{if(e.target.type===`checkbox`&&e.target.dataset.ap){let t=parseInt(e.target.dataset.ap),n=e.target.dataset.field;o(t,n,e.target.checked),M()}}))}function M(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=k(),j())}var N=`parc_mission_steps`;function P(){let e=localStorage.getItem(N);if(e)return JSON.parse(e);let t={step1:!1,step2:!1,step3:!1,step4:!1,step5:!1};return localStorage.setItem(N,JSON.stringify(t)),t}function F(e){let t=P();return t[e]=!t[e],localStorage.setItem(N,JSON.stringify(t)),t}function I(){let e=P(),t=Object.values(e).filter(Boolean).length,n=Math.round(t/5*100);return`
     <div class="page-header">
       <h2>Mission Brief</h2>
       <p>ملخص المهمة الميدانية — جاهز للقراءة قبل الوصول لفندق بارك</p>
@@ -521,11 +624,11 @@
 
       <!-- Timeline -->
       <div class="timeline" id="missionTimeline">
-        ${A(`step1`,1,e.step1,`الوصول والتجهيز`,`الوصول للمقر التقني الأول، وتشغيل حاسوب محمول (Laptop) متصل بإنترنت 4G خارجي.`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`)}
-        ${A(`step2`,2,e.step2,`فتح AnyDesk`,`فتح برنامج AnyDesk وإعطاء الصلاحية للإدارة عن بعد (للمهندس أحمد).`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`)}
-        ${A(`step3`,3,e.step3,`ربط الميكروتيك`,`ربط الميكروتيك بالطاقة، وتوصيله بالحاسوب المحمول عبر منفذ RJ45 وفتح برنامج Winbox.`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 18v4"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M2 12h6"/><path d="M18 12h4"/><path d="M4.93 19.07l4.24-4.24"/><path d="M14.83 9.17l4.24-4.24"/></svg>`)}
-        ${A(`step4`,4,e.step4,`عزل موجهات Huawei`,`عزل موجهات Huawei السبعة عن السويتش الرئيسي (تجهيزاً لربطها بالميكروتيك).`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`)}
-        ${A(`step5`,5,e.step5,`تحويل نقاط Altai`,`التوجه للطوابق (بعد إنهاء برمجة الميكروتيك عن بعد) لتحويل نقاط Altai إلى Bridge Mode وتخفيض قوة الإرسال.`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`)}
+        ${L(`step1`,1,e.step1,`الوصول والتجهيز`,`الوصول للمقر التقني الأول، وتشغيل حاسوب محمول (Laptop) متصل بإنترنت 4G خارجي.`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`)}
+        ${L(`step2`,2,e.step2,`فتح AnyDesk`,`فتح برنامج AnyDesk وإعطاء الصلاحية للإدارة عن بعد (للمهندس أحمد).`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`)}
+        ${L(`step3`,3,e.step3,`ربط الميكروتيك`,`ربط الميكروتيك بالطاقة، وتوصيله بالحاسوب المحمول عبر منفذ RJ45 وفتح برنامج Winbox.`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 18v4"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M2 12h6"/><path d="M18 12h4"/><path d="M4.93 19.07l4.24-4.24"/><path d="M14.83 9.17l4.24-4.24"/></svg>`)}
+        ${L(`step4`,4,e.step4,`عزل موجهات Huawei`,`عزل موجهات Huawei السبعة عن السويتش الرئيسي (تجهيزاً لربطها بالميكروتيك).`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`)}
+        ${L(`step5`,5,e.step5,`تحويل نقاط Altai`,`التوجه للطوابق (بعد إنهاء برمجة الميكروتيك عن بعد) لتحويل نقاط Altai إلى Bridge Mode وتخفيض قوة الإرسال.`,`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`)}
       </div>
 
       ${n===100?`
@@ -535,7 +638,7 @@
         </div>
       `:``}
     </div>
-  `}function A(e,t,n,r,i,a){return`
+  `}function L(e,t,n,r,i,a){return`
     <div class="timeline-step ${n?`done`:``}" data-step-key="${e}">
       <div class="timeline-marker">
         <div class="timeline-dot">
@@ -554,7 +657,7 @@
         </div>
       </div>
     </div>
-  `}function j(){let e=document.getElementById(`missionTimeline`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`timeline-check`)&&(O(e.target.dataset.key),M())}),e.addEventListener(`click`,e=>{let t=e.target.closest(`.timeline-card`);if(t&&!e.target.classList.contains(`timeline-check`)){let e=t.querySelector(`.timeline-check`);e&&(O(e.dataset.key),M())}}))}function M(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=k(),j())}var N=`parc_setup_steps`;function P(){let e=localStorage.getItem(N);if(e)return JSON.parse(e);let t={step1:!1,step2:!1,step3:!1,step4:!1};return localStorage.setItem(N,JSON.stringify(t)),t}function F(e){let t=P();return t[e]=!t[e],localStorage.setItem(N,JSON.stringify(t)),t}function I(){let e=P(),t=Object.values(e).filter(Boolean).length,n=Math.round(t/4*100);return`
+  `}function R(){let e=document.getElementById(`missionTimeline`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`timeline-check`)&&(F(e.target.dataset.key),z())}),e.addEventListener(`click`,e=>{let t=e.target.closest(`.timeline-card`);if(t&&!e.target.classList.contains(`timeline-check`)){let e=t.querySelector(`.timeline-check`);e&&(F(e.dataset.key),z())}}))}function z(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=I(),R())}var B=`parc_setup_steps`;function V(){let e=localStorage.getItem(B);if(e)return JSON.parse(e);let t={step1:!1,step2:!1,step3:!1,step4:!1};return localStorage.setItem(B,JSON.stringify(t)),t}function H(e){let t=V();return t[e]=!t[e],localStorage.setItem(B,JSON.stringify(t)),t}function U(){let e=V(),t=Object.values(e).filter(Boolean).length,n=Math.round(t/4*100);return`
     <div class="page-header">
       <h2>تجهيز بيئة العمل</h2>
       <p>المقر التقني الأول — خطوات الربط وتجهيز البرامج للتحكم عن بعد</p>
@@ -794,7 +897,7 @@
         <span>التجهيز مكتمل! في انتظار المهندس أحمد للبدء بالعمل عن بعد 🎉</span>
       </div>
     `:``}
-  `}function L(){let e=document.getElementById(`setupStepper`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`setup-check`)&&(F(e.target.dataset.key),R())}),e.addEventListener(`click`,e=>{if(!e.target.closest(`.btn-download`)&&e.target.closest(`.setup-step-card`)&&!e.target.classList.contains(`setup-check`)){let t=e.target.closest(`.setup-step`);if(t){let e=t.querySelector(`.setup-check`);e&&(F(e.dataset.key),R())}}}))}function R(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=I(),L())}var z=`parc_playbook`;function B(){let e=localStorage.getItem(z);if(e)return JSON.parse(e);let t={goBag:{tool1:!1,tool2:!1,tool3:!1,tool4:!1,tool5:!1},confirmed:!1,confirmedAt:null};return localStorage.setItem(z,JSON.stringify(t)),t}function V(e){let t=B();return Object.assign(t,e),localStorage.setItem(z,JSON.stringify(t)),t}function H(e){let t=B();return t.goBag[e]=!t.goBag[e],localStorage.setItem(z,JSON.stringify(t)),t}function U(){let e=B(),t=e.goBag,n=Object.values(t).filter(Boolean).length,r=Object.keys(t).length,i=n===r;return`
+  `}function W(){let e=document.getElementById(`setupStepper`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`setup-check`)&&(H(e.target.dataset.key),G())}),e.addEventListener(`click`,e=>{if(!e.target.closest(`.btn-download`)&&e.target.closest(`.setup-step-card`)&&!e.target.classList.contains(`setup-check`)){let t=e.target.closest(`.setup-step`);if(t){let e=t.querySelector(`.setup-check`);e&&(H(e.dataset.key),G())}}}))}function G(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=U(),W())}var K=`parc_playbook`;function q(){let e=localStorage.getItem(K);if(e)return JSON.parse(e);let t={goBag:{tool1:!1,tool2:!1,tool3:!1,tool4:!1,tool5:!1},confirmed:!1,confirmedAt:null};return localStorage.setItem(K,JSON.stringify(t)),t}function J(e){let t=q();return Object.assign(t,e),localStorage.setItem(K,JSON.stringify(t)),t}function ae(e){let t=q();return t.goBag[e]=!t.goBag[e],localStorage.setItem(K,JSON.stringify(t)),t}function Y(){let e=q(),t=e.goBag,n=Object.values(t).filter(Boolean).length,r=Object.keys(t).length,i=n===r;return`
     <div class="page-header">
       <h2>ميثاق التقني الميداني</h2>
       <p>Field Technician Playbook — بروتوكول التدخل الفندقي وحماية العقد</p>
@@ -1005,4 +1108,4 @@
         <span>تأكيد وبدء المهمة (Start Mission)</span>
       </button>
     </div>
-  `}function W(){let e=document.getElementById(`goBagList`);e&&e.addEventListener(`change`,e=>{e.target.classList.contains(`gobag-check`)&&(H(e.target.dataset.key),G())});let t=document.getElementById(`oathCheck`),n=document.getElementById(`startMissionBtn`);t&&n&&t.addEventListener(`change`,()=>{n.disabled=!t.checked}),n&&n.addEventListener(`click`,()=>{if(B().confirmed){window.location.hash=`#/setup`;return}V({confirmed:!0,confirmedAt:new Date().toISOString()}),window.location.hash=`#/setup`})}function G(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=U(),W())}var K={"/":{render:c,init:null,title:`Dashboard`},"/devices":{render:f,init:g,title:`Devices`},"/upgrade":{render:v,init:null,title:`Upgrade Plan`},"/technician":{render:S,init:w,title:`Technician`},"/mission":{render:k,init:j,title:`Mission Brief`},"/setup":{render:I,init:L,title:`Field Setup`},"/playbook":{render:U,init:W,title:`Playbook`}};function q(){return window.location.hash.slice(1)||`/`}function J(){let e=q(),t=K[e]||K[`/`],n=document.getElementById(`pageContent`);n&&(n.innerHTML=t.render(),n.style.animation=`none`,n.offsetHeight,n.style.animation=``),t.init&&t.init(),document.querySelectorAll(`.nav-link`).forEach(t=>{let n=t.dataset.page,r=e===`/`&&n===`dashboard`||e===`/`+n;t.classList.toggle(`active`,r)}),document.title=`Hotel Parc — ${t.title}`,Y()}function Y(){document.getElementById(`sidebar`)?.classList.remove(`open`),document.getElementById(`sidebarOverlay`)?.classList.remove(`active`)}function X(){let e=document.getElementById(`menuToggle`),t=document.getElementById(`sidebarOverlay`);e?.addEventListener(`click`,()=>{document.getElementById(`sidebar`)?.classList.toggle(`open`),t?.classList.toggle(`active`)}),t?.addEventListener(`click`,Y)}window.addEventListener(`hashchange`,J),window.addEventListener(`DOMContentLoaded`,()=>{X(),J()});
+  `}function X(){let e=document.getElementById(`goBagList`);e&&e.addEventListener(`change`,e=>{e.target.classList.contains(`gobag-check`)&&(ae(e.target.dataset.key),oe())});let t=document.getElementById(`oathCheck`),n=document.getElementById(`startMissionBtn`);t&&n&&t.addEventListener(`change`,()=>{n.disabled=!t.checked}),n&&n.addEventListener(`click`,()=>{if(q().confirmed){window.location.hash=`#/setup`;return}J({confirmed:!0,confirmedAt:new Date().toISOString()}),window.location.hash=`#/setup`})}function oe(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=Y(),X())}var Z={"/":{render:c,init:null,title:`Dashboard`},"/devices":{render:v,init:T,title:`Devices`},"/upgrade":{render:D,init:null,title:`Upgrade Plan`},"/technician":{render:k,init:j,title:`Technician`},"/mission":{render:I,init:R,title:`Mission Brief`},"/setup":{render:U,init:W,title:`Field Setup`},"/playbook":{render:Y,init:X,title:`Playbook`}};function se(){return window.location.hash.slice(1)||`/`}function Q(){let e=se(),t=Z[e]||Z[`/`],n=document.getElementById(`pageContent`);n&&(n.innerHTML=t.render(),n.style.animation=`none`,n.offsetHeight,n.style.animation=``),t.init&&t.init(),document.querySelectorAll(`.nav-link`).forEach(t=>{let n=t.dataset.page,r=e===`/`&&n===`dashboard`||e===`/`+n;t.classList.toggle(`active`,r)}),document.title=`Hotel Parc — ${t.title}`,$()}function $(){document.getElementById(`sidebar`)?.classList.remove(`open`),document.getElementById(`sidebarOverlay`)?.classList.remove(`active`)}function ce(){let e=document.getElementById(`menuToggle`),t=document.getElementById(`sidebarOverlay`);e?.addEventListener(`click`,()=>{document.getElementById(`sidebar`)?.classList.toggle(`open`),t?.classList.toggle(`active`)}),t?.addEventListener(`click`,$)}window.addEventListener(`hashchange`,Q),window.addEventListener(`DOMContentLoaded`,()=>{ce(),Q()});
