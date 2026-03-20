@@ -554,4 +554,212 @@
         </div>
       </div>
     </div>
-  `}function j(){let e=document.getElementById(`missionTimeline`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`timeline-check`)&&(O(e.target.dataset.key),M())}),e.addEventListener(`click`,e=>{let t=e.target.closest(`.timeline-card`);if(t&&!e.target.classList.contains(`timeline-check`)){let e=t.querySelector(`.timeline-check`);e&&(O(e.dataset.key),M())}}))}function M(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=k(),j())}var N={"/":{render:c,init:null,title:`Dashboard`},"/devices":{render:f,init:g,title:`Devices`},"/upgrade":{render:v,init:null,title:`Upgrade Plan`},"/technician":{render:S,init:w,title:`Technician`},"/mission":{render:k,init:j,title:`Mission Brief`}};function P(){return window.location.hash.slice(1)||`/`}function F(){let e=P(),t=N[e]||N[`/`],n=document.getElementById(`pageContent`);n&&(n.innerHTML=t.render(),n.style.animation=`none`,n.offsetHeight,n.style.animation=``),t.init&&t.init(),document.querySelectorAll(`.nav-link`).forEach(t=>{let n=t.dataset.page,r=e===`/`&&n===`dashboard`||e===`/`+n;t.classList.toggle(`active`,r)}),document.title=`Hotel Parc — ${t.title}`,I()}function I(){document.getElementById(`sidebar`)?.classList.remove(`open`),document.getElementById(`sidebarOverlay`)?.classList.remove(`active`)}function L(){let e=document.getElementById(`menuToggle`),t=document.getElementById(`sidebarOverlay`);e?.addEventListener(`click`,()=>{document.getElementById(`sidebar`)?.classList.toggle(`open`),t?.classList.toggle(`active`)}),t?.addEventListener(`click`,I)}window.addEventListener(`hashchange`,F),window.addEventListener(`DOMContentLoaded`,()=>{L(),F()});
+  `}function j(){let e=document.getElementById(`missionTimeline`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`timeline-check`)&&(O(e.target.dataset.key),M())}),e.addEventListener(`click`,e=>{let t=e.target.closest(`.timeline-card`);if(t&&!e.target.classList.contains(`timeline-check`)){let e=t.querySelector(`.timeline-check`);e&&(O(e.dataset.key),M())}}))}function M(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=k(),j())}var N=`parc_setup_steps`;function P(){let e=localStorage.getItem(N);if(e)return JSON.parse(e);let t={step1:!1,step2:!1,step3:!1,step4:!1};return localStorage.setItem(N,JSON.stringify(t)),t}function F(e){let t=P();return t[e]=!t[e],localStorage.setItem(N,JSON.stringify(t)),t}function I(){let e=P(),t=Object.values(e).filter(Boolean).length,n=Math.round(t/4*100);return`
+    <div class="page-header">
+      <h2>تجهيز بيئة العمل</h2>
+      <p>المقر التقني الأول — خطوات الربط وتجهيز البرامج للتحكم عن بعد</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="glass-card">
+      <div class="progress-bar-wrapper" style="margin-bottom: 0;">
+        <div class="progress-info">
+          <span class="progress-label">تقدم التجهيز</span>
+          <span class="progress-pct">${n}%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: ${n}%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="setup-stepper" id="setupStepper">
+
+      <!-- ═══════ Step 1 ═══════ -->
+      <div class="setup-step ${e.step1?`done`:``}" data-step-key="step1">
+        <div class="setup-step-marker">
+          <div class="setup-step-num">
+            ${e.step1?`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`:`1`}
+          </div>
+          <div class="setup-step-line"></div>
+        </div>
+        <div class="setup-step-content">
+          <div class="setup-step-card">
+            <div class="setup-step-header">
+              <div class="setup-step-icon blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <div class="setup-step-title">التجهيز المادي</div>
+                <div class="setup-step-subtitle">Physical Setup</div>
+              </div>
+              <input type="checkbox" class="setup-check" data-key="step1" ${e.step1?`checked`:``} />
+            </div>
+            <ul class="setup-instructions">
+              <li>
+                <span class="instruction-bullet">●</span>
+                <span>ضع الحاسوب المحمول <strong>(Laptop)</strong> في المقر التقني الأول وقم بتوصيله بالكهرباء.</span>
+              </li>
+              <li>
+                <span class="instruction-bullet cable">●</span>
+                <span>قم بتوصيل كابل شبكة <strong>(RJ45)</strong> من حاسوبك إلى المبدل الرئيسي <strong>(Core Switch)</strong>.</span>
+              </li>
+              <li>
+                <span class="instruction-bullet orange">●</span>
+                <span>قم بتشغيل جهاز الميكروتيك <strong>(MikroTik)</strong> الجديد وربطه بالكهرباء، <strong style="color: var(--accent-orange);">ولا تربطه بشبكة الفندق بعد</strong>.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════ Step 2 ═══════ -->
+      <div class="setup-step ${e.step2?`done`:``}" data-step-key="step2">
+        <div class="setup-step-marker">
+          <div class="setup-step-num">
+            ${e.step2?`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`:`2`}
+          </div>
+          <div class="setup-step-line"></div>
+        </div>
+        <div class="setup-step-content">
+          <div class="setup-step-card">
+            <div class="setup-step-header">
+              <div class="setup-step-icon purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              </div>
+              <div>
+                <div class="setup-step-title">تأمين الإنترنت الخارجي</div>
+                <div class="setup-step-subtitle">External Internet</div>
+              </div>
+              <input type="checkbox" class="setup-check" data-key="step2" ${e.step2?`checked`:``} />
+            </div>
+            <ul class="setup-instructions">
+              <li>
+                <span class="instruction-bullet purple">●</span>
+                <span>بما أن شبكة الفندق ستنقطع أثناء الترقية، قم بتشغيل <strong>(نقطة اتصال 4G - Hotspot)</strong> من هاتفك الشخصي.</span>
+              </li>
+              <li>
+                <span class="instruction-bullet purple">●</span>
+                <span>اربط الحاسوب المحمول بشبكة الواي فاي الخاصة بهاتفك لضمان بقائه <strong>متصلاً بالإنترنت طوال العملية</strong>.</span>
+              </li>
+            </ul>
+            <div class="setup-warning">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span>مهم: لا تعتمد على إنترنت الفندق — ستنقطع الخدمة أثناء التحويل!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════ Step 3 ═══════ -->
+      <div class="setup-step ${e.step3?`done`:``}" data-step-key="step3">
+        <div class="setup-step-marker">
+          <div class="setup-step-num">
+            ${e.step3?`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`:`3`}
+          </div>
+          <div class="setup-step-line"></div>
+        </div>
+        <div class="setup-step-content">
+          <div class="setup-step-card">
+            <div class="setup-step-header">
+              <div class="setup-step-icon green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <div>
+                <div class="setup-step-title">تحميل برامج العمل</div>
+                <div class="setup-step-subtitle">Required Software</div>
+              </div>
+              <input type="checkbox" class="setup-check" data-key="step3" ${e.step3?`checked`:``} />
+            </div>
+            <p class="setup-note">تأكد من وجود هذه البرامج على سطح المكتب:</p>
+            <div class="software-list">
+              <div class="software-item">
+                <div class="software-icon anydesk">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </div>
+                <div class="software-info">
+                  <div class="software-name">AnyDesk</div>
+                  <div class="software-desc">للسماح للمهندس بالدخول عن بعد</div>
+                </div>
+                <a href="https://anydesk.com/en/downloads" target="_blank" rel="noopener" class="btn-download">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  تحميل
+                </a>
+              </div>
+              <div class="software-item">
+                <div class="software-icon winbox">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div class="software-info">
+                  <div class="software-name">Winbox</div>
+                  <div class="software-desc">لبرمجة جهاز الميكروتيك</div>
+                </div>
+                <a href="https://mikrotik.com/download" target="_blank" rel="noopener" class="btn-download">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  تحميل
+                </a>
+              </div>
+              <div class="software-item">
+                <div class="software-icon scanner">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div class="software-info">
+                  <div class="software-name">Advanced IP Scanner</div>
+                  <div class="software-desc">لفحص الشبكة المحلية</div>
+                </div>
+                <a href="https://www.advanced-ip-scanner.com/" target="_blank" rel="noopener" class="btn-download">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  تحميل
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════ Step 4 ═══════ -->
+      <div class="setup-step ${e.step4?`done`:``}" data-step-key="step4">
+        <div class="setup-step-marker">
+          <div class="setup-step-num">
+            ${e.step4?`<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`:`4`}
+          </div>
+        </div>
+        <div class="setup-step-content">
+          <div class="setup-step-card">
+            <div class="setup-step-header">
+              <div class="setup-step-icon orange">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="setup-step-title">منح الصلاحية والانتظار</div>
+                <div class="setup-step-subtitle">Handover</div>
+              </div>
+              <input type="checkbox" class="setup-check" data-key="step4" ${e.step4?`checked`:``} />
+            </div>
+            <ul class="setup-instructions">
+              <li>
+                <span class="instruction-bullet orange">●</span>
+                <span>افتح برنامج <strong>AnyDesk</strong>.</span>
+              </li>
+              <li>
+                <span class="instruction-bullet orange">●</span>
+                <span>أرسل <strong>رقم الدخول (ID)</strong> وكلمة المرور للمهندس أحمد عبر الواتساب.</span>
+              </li>
+              <li>
+                <span class="instruction-bullet red">●</span>
+                <span><strong style="color: var(--accent-red);">انتظر تعليمات المهندس أحمد</strong> قبل فصل أي موجه (Router) من موجهات Huawei السبعة.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    ${n===100?`
+      <div class="mission-complete-banner">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>التجهيز مكتمل! في انتظار المهندس أحمد للبدء بالعمل عن بعد 🎉</span>
+      </div>
+    `:``}
+  `}function L(){let e=document.getElementById(`setupStepper`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`setup-check`)&&(F(e.target.dataset.key),R())}),e.addEventListener(`click`,e=>{if(!e.target.closest(`.btn-download`)&&e.target.closest(`.setup-step-card`)&&!e.target.classList.contains(`setup-check`)){let t=e.target.closest(`.setup-step`);if(t){let e=t.querySelector(`.setup-check`);e&&(F(e.dataset.key),R())}}}))}function R(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=I(),L())}var z={"/":{render:c,init:null,title:`Dashboard`},"/devices":{render:f,init:g,title:`Devices`},"/upgrade":{render:v,init:null,title:`Upgrade Plan`},"/technician":{render:S,init:w,title:`Technician`},"/mission":{render:k,init:j,title:`Mission Brief`},"/setup":{render:I,init:L,title:`Field Setup`}};function B(){return window.location.hash.slice(1)||`/`}function V(){let e=B(),t=z[e]||z[`/`],n=document.getElementById(`pageContent`);n&&(n.innerHTML=t.render(),n.style.animation=`none`,n.offsetHeight,n.style.animation=``),t.init&&t.init(),document.querySelectorAll(`.nav-link`).forEach(t=>{let n=t.dataset.page,r=e===`/`&&n===`dashboard`||e===`/`+n;t.classList.toggle(`active`,r)}),document.title=`Hotel Parc — ${t.title}`,H()}function H(){document.getElementById(`sidebar`)?.classList.remove(`open`),document.getElementById(`sidebarOverlay`)?.classList.remove(`active`)}function U(){let e=document.getElementById(`menuToggle`),t=document.getElementById(`sidebarOverlay`);e?.addEventListener(`click`,()=>{document.getElementById(`sidebar`)?.classList.toggle(`open`),t?.classList.toggle(`active`)}),t?.addEventListener(`click`,H)}window.addEventListener(`hashchange`,V),window.addEventListener(`DOMContentLoaded`,()=>{U(),V()});

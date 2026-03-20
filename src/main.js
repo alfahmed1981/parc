@@ -8,6 +8,7 @@ import { renderDevices, initDevicesEvents } from './pages/devices.js';
 import { renderUpgrade } from './pages/upgrade.js';
 import { renderTechnician, initTechnicianEvents } from './pages/technician.js';
 import { renderMission, initMissionEvents } from './pages/mission.js';
+import { renderSetup, initSetupEvents } from './pages/setup.js';
 
 // --- Hash-Based Router ---
 const routes = {
@@ -16,6 +17,7 @@ const routes = {
   '/upgrade':    { render: renderUpgrade,      init: null,                 title: 'Upgrade Plan' },
   '/technician': { render: renderTechnician,   init: initTechnicianEvents, title: 'Technician' },
   '/mission':    { render: renderMission,      init: initMissionEvents,    title: 'Mission Brief' },
+  '/setup':      { render: renderSetup,        init: initSetupEvents,      title: 'Field Setup' },
 };
 
 function getRoute() {
