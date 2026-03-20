@@ -897,7 +897,7 @@
         <span>التجهيز مكتمل! في انتظار المهندس أحمد للبدء بالعمل عن بعد 🎉</span>
       </div>
     `:``}
-  `}function H(){let e=document.getElementById(`setupStepper`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`setup-check`)&&(B(e.target.dataset.key),U())}),e.addEventListener(`click`,e=>{if(!e.target.closest(`.btn-download`)&&e.target.closest(`.setup-step-card`)&&!e.target.classList.contains(`setup-check`)){let t=e.target.closest(`.setup-step`);if(t){let e=t.querySelector(`.setup-check`);e&&(B(e.dataset.key),U())}}}))}function U(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=V(),H())}var W=`parc_playbook`;function G(){let e=localStorage.getItem(W);if(e)return JSON.parse(e);let t={goBag:{tool1:!1,tool2:!1,tool3:!1,tool4:!1,tool5:!1},confirmed:!1,confirmedAt:null};return localStorage.setItem(W,JSON.stringify(t)),t}function K(e){let t=G();return Object.assign(t,e),localStorage.setItem(W,JSON.stringify(t)),t}function se(e){let t=G();return t.goBag[e]=!t.goBag[e],localStorage.setItem(W,JSON.stringify(t)),t}function q(){let e=G(),t=e.goBag,n=Object.values(t).filter(Boolean).length,r=Object.keys(t).length,i=n===r;return`
+  `}function H(){let e=document.getElementById(`setupStepper`);e&&(e.addEventListener(`change`,e=>{e.target.classList.contains(`setup-check`)&&(B(e.target.dataset.key),U())}),e.addEventListener(`click`,e=>{if(!e.target.closest(`.btn-download`)&&e.target.closest(`.setup-step-card`)&&!e.target.classList.contains(`setup-check`)){let t=e.target.closest(`.setup-step`);if(t){let e=t.querySelector(`.setup-check`);e&&(B(e.dataset.key),U())}}}))}function U(){let e=document.getElementById(`pageContent`);e&&(e.innerHTML=V(),H())}var W=`parc_playbook`;function G(){let e=localStorage.getItem(W);if(e)return JSON.parse(e);let t={goBag:{tool1:!1,tool2:!1,tool3:!1,tool4:!1,tool5:!1,tool6:!1},confirmed:!1,confirmedAt:null};return localStorage.setItem(W,JSON.stringify(t)),t}function K(e){let t=G();return Object.assign(t,e),localStorage.setItem(W,JSON.stringify(t)),t}function se(e){let t=G();return t.goBag[e]=!t.goBag[e],localStorage.setItem(W,JSON.stringify(t)),t}function q(){let e=G(),t=e.goBag,n=Object.values(t).filter(Boolean).length,r=Object.keys(t).length,i=n===r;return`
     <div class="page-header">
       <h2>ميثاق التقني الميداني</h2>
       <p>Field Technician Playbook — بروتوكول التدخل الفندقي وحماية العقد</p>
@@ -957,6 +957,13 @@
           <div class="playbook-check-content">
             <span class="playbook-check-title">مفتاح USB للطوارئ</span>
             <span class="playbook-check-desc">يحتوي على Winbox ونسخ احتياطية</span>
+          </div>
+        </label>
+        <label class="playbook-check-item ${t.tool6?`checked`:``}">
+          <input type="checkbox" class="gobag-check" data-key="tool6" ${t.tool6?`checked`:``} />
+          <div class="playbook-check-content">
+            <span class="playbook-check-title">شوكة إخراج بطاقة الهاتف (SIM Ejector Pin)</span>
+            <span class="playbook-check-desc critical-note">ضرورية لإعادة الضبط المصنعي (Factory Reset) للأجهزة عبر زر Reset المدفون</span>
           </div>
         </label>
       </div>

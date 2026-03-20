@@ -8,7 +8,7 @@ function getPlaybookStatus() {
   const stored = localStorage.getItem(PLAYBOOK_STORAGE_KEY);
   if (stored) return JSON.parse(stored);
   const defaults = {
-    goBag: { tool1: false, tool2: false, tool3: false, tool4: false, tool5: false },
+    goBag: { tool1: false, tool2: false, tool3: false, tool4: false, tool5: false, tool6: false },
     confirmed: false,
     confirmedAt: null,
   };
@@ -97,6 +97,13 @@ export function renderPlaybook() {
           <div class="playbook-check-content">
             <span class="playbook-check-title">مفتاح USB للطوارئ</span>
             <span class="playbook-check-desc">يحتوي على Winbox ونسخ احتياطية</span>
+          </div>
+        </label>
+        <label class="playbook-check-item ${gb.tool6 ? 'checked' : ''}">
+          <input type="checkbox" class="gobag-check" data-key="tool6" ${gb.tool6 ? 'checked' : ''} />
+          <div class="playbook-check-content">
+            <span class="playbook-check-title">شوكة إخراج بطاقة الهاتف (SIM Ejector Pin)</span>
+            <span class="playbook-check-desc critical-note">ضرورية لإعادة الضبط المصنعي (Factory Reset) للأجهزة عبر زر Reset المدفون</span>
           </div>
         </label>
       </div>
