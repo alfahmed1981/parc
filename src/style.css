@@ -1163,6 +1163,360 @@ body::before {
   background: rgba(255, 255, 255, 0.15);
 }
 
+/* --- Mission Brief Page --- */
+.mission-objective {
+  text-align: center;
+  padding: 36px 24px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(179, 136, 255, 0.08));
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-objective::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
+}
+
+.mission-obj-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-blue-dim);
+  color: var(--accent-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.3); }
+  50% { box-shadow: 0 0 0 12px rgba(0, 212, 255, 0); }
+}
+
+.mission-obj-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent-blue);
+  margin-bottom: 12px;
+}
+
+.mission-obj-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--text-primary);
+  max-width: 600px;
+  margin: 0 auto;
+  direction: rtl;
+}
+
+/* Problem & Solution Cards */
+.problem-card, .solution-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  transition: all var(--transition-normal);
+  line-height: 1.7;
+}
+
+.problem-card:last-child, .solution-card:last-child {
+  margin-bottom: 0;
+}
+
+.problem-card {
+  background: var(--accent-red-dim);
+  border: 1px solid rgba(255, 82, 82, 0.2);
+}
+
+.problem-card:hover {
+  border-color: rgba(255, 82, 82, 0.4);
+}
+
+.solution-card {
+  background: var(--accent-green-dim);
+  border: 1px solid rgba(0, 230, 118, 0.2);
+}
+
+.solution-card:hover {
+  border-color: rgba(0, 230, 118, 0.4);
+}
+
+.problem-card-icon, .solution-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.problem-card-icon {
+  background: rgba(255, 82, 82, 0.15);
+  color: var(--accent-red);
+}
+
+.solution-card-icon {
+  background: rgba(0, 230, 118, 0.15);
+  color: var(--accent-green);
+}
+
+.problem-card-body, .solution-card-body {
+  flex: 1;
+}
+
+.problem-card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-red);
+  margin-bottom: 6px;
+}
+
+.solution-card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-green);
+  margin-bottom: 6px;
+}
+
+.problem-card p, .solution-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  direction: rtl;
+}
+
+.problem-card p strong {
+  color: var(--accent-red);
+}
+
+.solution-card p strong {
+  color: var(--accent-green);
+}
+
+.mono-inline {
+  font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.8rem;
+  color: var(--accent-blue);
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+}
+
+.timeline-step {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.timeline-step:last-child .timeline-line {
+  display: none;
+}
+
+.timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 36px;
+}
+
+.timeline-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  transition: all var(--transition-normal);
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.timeline-step.done .timeline-dot {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: white;
+  box-shadow: 0 0 12px rgba(0, 230, 118, 0.3);
+}
+
+.timeline-line {
+  width: 2px;
+  flex: 1;
+  min-height: 16px;
+  background: var(--border-color);
+  transition: background var(--transition-normal);
+}
+
+.timeline-step.done .timeline-line {
+  background: rgba(0, 230, 118, 0.3);
+}
+
+.timeline-content {
+  flex: 1;
+  padding-bottom: 16px;
+}
+
+.timeline-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.timeline-card:hover {
+  border-color: var(--border-glow);
+  background: var(--bg-glass-hover);
+}
+
+.timeline-card.checked {
+  border-color: rgba(0, 230, 118, 0.3);
+  background: rgba(0, 230, 118, 0.04);
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timeline-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-blue-dim);
+  color: var(--accent-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.timeline-card.checked .timeline-icon {
+  background: var(--accent-green-dim);
+  color: var(--accent-green);
+}
+
+.timeline-title {
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.timeline-card.checked .timeline-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.timeline-check {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.timeline-check:checked {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+}
+
+.timeline-check:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.timeline-check:hover {
+  border-color: var(--accent-blue);
+}
+
+.timeline-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  line-height: 1.6;
+  direction: rtl;
+  padding-right: 48px;
+}
+
+.timeline-card.checked .timeline-desc {
+  color: var(--text-muted);
+}
+
+/* Mission Complete Banner */
+.mission-complete-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, rgba(0, 230, 118, 0.1), rgba(0, 212, 255, 0.1));
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  border-radius: var(--radius-md);
+  margin-top: 20px;
+  color: var(--accent-green);
+  font-weight: 700;
+  font-size: 0.9rem;
+  animation: fadeInUp 0.5s ease;
+}
+
+/* Mission mobile overrides */
+@media (max-width: 860px) {
+  .mission-obj-title {
+    font-size: 1rem;
+  }
+
+  .problem-card, .solution-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .timeline-desc {
+    padding-right: 0;
+  }
+}
+
 /* --- Utility --- */
 .hidden { display: none !important; }
 .text-center { text-align: center; }
